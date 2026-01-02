@@ -3,9 +3,10 @@ import "dotenv/config";
 import express from "express"; // using type module
 import { connectDB, disconnectDB } from "./config/db.js";
 
-// Import Routers
+// 1. Import Routers
 import movieRoutes from "./routes/movieRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js";
 
 connectDB();
 
@@ -16,10 +17,12 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// API Routes
+// 2. API Routes
 app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
+app.use("/watchlist", watchlistRoutes);
 
+// Start the server
 const PORT = 5001;
 const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
