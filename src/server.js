@@ -9,9 +9,6 @@ import authRoutes from "./routes/authRoutes.js";
 
 connectDB();
 
-config();
-connectDB();
-
 // Instance of our Express application
 const app = express();
 
