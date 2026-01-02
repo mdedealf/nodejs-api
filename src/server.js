@@ -1,10 +1,13 @@
 // const express = require("express"); // using type commonjs
+import "dotenv/config";
 import express from "express"; // using type module
-import { config } from "dotenv";
 import { connectDB, disconnectDB } from "./config/db.js";
 
 // Import Routers
 import movieRoutes from "./routes/movieRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+
+connectDB();
 
 config();
 connectDB();
@@ -12,11 +15,16 @@ connectDB();
 // Instance of our Express application
 const app = express();
 
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // API Routes
 app.use("/movies", movieRoutes);
+app.use("/auth", authRoutes);
 
 const PORT = 5001;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
