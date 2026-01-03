@@ -4,15 +4,13 @@ import { prisma } from "../config/db.js";
 // Read the token from the request
 // Check if the token is valid
 export const authMiddleware = async (req, res, next) => {
-  console.log("Auth middleware reached");
-
   let token;
 
   if (
     req.headers.authorization &&
     req.headers.authorization.startsWith("Bearer")
   ) {
-    token = req.headers.authorization.split(" ")[1];
+    token = req.headers.authorization.split(" ")[1]; // ["Bearer", "tokenvalue-12312391401204" ]
   } else if (req.cookies?.jwt) {
     token = req.cookies.jwt;
   }
