@@ -14,9 +14,10 @@ router.use(authMiddleware);
 
 router.post("/", validateRequest(addToWatchlistSchema), addToWatchlist);
 
-// http://localhost:5001/watchlist/:id
+// PUT http://localhost:5001/watchlist/:id
 router.put("/:id", updateWatchlistItem);
 
+// DELETE http://localhost:5001/watchlist/:id
 router.delete("/:id", removeFromWatchlist);
 
 export default router;
