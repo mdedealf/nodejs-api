@@ -22,9 +22,9 @@ app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
 app.use("/watchlist", watchlistRoutes);
 
-// Start the server
-const PORT = 5001;
-const server = app.listen(PORT, () => {
+// Start the server on specified PORT
+const PORT = process.env.PORT || 3001;
+const server = app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server running on port ${PORT}`);
 });
 
